@@ -1,19 +1,16 @@
 
 import java.awt.Color;
-
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
 import javazoom.jl.decoder.JavaLayerException;
 
 
@@ -62,15 +59,14 @@ public class MenuNavBar extends JFrame implements ActionListener {
 		exit.addActionListener(this);
 		
 		//Shortcut key
-	    file.setMnemonic('F');      	// alt F
-
-	    openFile.setMnemonic('O');  	// Just press O
-	    musicLibrary.setMnemonic('M');  // Just press M
-	    exit.setMnemonic('E');      	// Just press E
+		file.setMnemonic('F');      	// alt F
+		openFile.setMnemonic('O');  	// Press O
+		musicLibrary.setMnemonic('M');  // Press M
+		exit.setMnemonic('E');      	// Press E
 	    
     
 		String[] musicTitle = {audio.data[0].title, audio.data[1].title,
-				               audio.data[2].title, audio.data[3].title};
+				       audio.data[2].title, audio.data[3].title};
 		
 		list = new JList(musicTitle);
 		list.setVisibleRowCount(2);
@@ -78,24 +74,17 @@ public class MenuNavBar extends JFrame implements ActionListener {
 		list.setForeground(Color.white);
 		list.setBackground(new Color(45, 45, 45));
 		list.setFixedCellHeight(30);
-	    list.setFixedCellWidth(350);
-	 
-		
-	    
+	        list.setFixedCellWidth(350);
+	     
 		musicPanel = new JPanel();
 		musicPanel.setBackground(new Color(35, 35, 35));
 		musicPanel.setLayout(new FlowLayout());	
 		musicPanel.add(new JScrollPane(list));
-	    
-	    	    
-	    file.add(openFile);
-	    file.add(musicLibrary);
-	    
-	    file.add(exit);
-		
+	      
+		file.add(openFile);
+		file.add(musicLibrary);
+                file.add(exit);
 		menuBar.add(file);
-
-	
 	}
 
 	@Override
@@ -124,16 +113,10 @@ public class MenuNavBar extends JFrame implements ActionListener {
 				        JOptionPane.showMessageDialog(null, "Please select a WAV file.");
 				        
 				    }
-			}
-			
+			}	
 		}
-		
-
-		if(e.getSource() == exit) {
+		  if(e.getSource() == exit) {
 			System.exit(0);
-		}
-		
-		
-		
+		  }	
 	}
 }
