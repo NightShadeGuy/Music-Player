@@ -5,16 +5,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JSlider;
-
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
@@ -38,9 +35,9 @@ public class Audio {
 			new Color(240, 98, 146));
 	
 	MusicData music2 = new MusicData(
-			"Zamir – Clockwork (ft. Chevy & Rosarrie) (Lyrics) [CC]",
-			"src/Images/Zamir – Clockwork.png",
-			"src/MusicList/Zamir – Clockwork (ft. Chevy & Rosarrie) (Lyrics) [CC].wav",
+			"Zamir â€“ Clockwork (ft. Chevy & Rosarrie) (Lyrics) [CC]",
+			"src/Images/Zamir â€“ Clockwork.png",
+			"src/MusicList/Zamir â€“ Clockwork (ft. Chevy & Rosarrie) (Lyrics) [CC].wav",
 			new Color(34, 165, 226));
 	
 	MusicData music3 = new MusicData(
@@ -54,23 +51,19 @@ public class Audio {
 			"src/Images/Eli Noir - Real.png",
 			"src/MusicList/Eli Noir - Real (Lyrics) [CC].wav",  
 			new Color(0xec8484));
-	
-		
+			
 	MusicData[] data = {music1, music2, music3, music4};
 	
-	
-	
-	
 	Audio() throws JavaLayerException, LineUnavailableException, IOException, UnsupportedAudioFileException {
-		file = new File(data[nextClip].musicLocation);
-		AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+	    file = new File(data[nextClip].musicLocation);
+	    AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
 	    clip = AudioSystem.getClip();
 	    clip.open(audioStream);	 	
 	}
 	
 	protected void updateMusic(int index) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
-		file = new File(data[index].musicLocation);
-		AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+	    file = new File(data[index].musicLocation);
+	    AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
 	    clip = AudioSystem.getClip();
 	    clip.open(audioStream);	 
 	    
@@ -79,15 +72,9 @@ public class Audio {
 	
 	
 	protected void sound() {
-		volumeSlider.setBounds(245, 335, 150, 50);
-		volumeSlider.setBackground(data[0].bgColor);
-		volumeSlider.setVisible(false);
-		
-		volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);	
-	}
-	
-	
-
-	
-   
+	    volumeSlider.setBounds(245, 335, 150, 50);
+	    volumeSlider.setBackground(data[0].bgColor);
+	    volumeSlider.setVisible(false);
+            volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);	
+	}  
 }
