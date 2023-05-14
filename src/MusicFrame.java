@@ -3,15 +3,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.Random;
-
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
 import javazoom.jl.decoder.JavaLayerException;
-
 import javax.sound.sampled.*;
 
 public class MusicFrame extends JFrame implements  ActionListener, ChangeListener, MouseListener{
@@ -237,9 +234,9 @@ public class MusicFrame extends JFrame implements  ActionListener, ChangeListene
 		
 		    //music library 
 		if(e.getSource() == floatBar.musicLibrary) {
-			northPanel.setVisible(true);
-			musicTitle.setBounds(0, -68, 405, 400);
-			audio.volumeSlider.setBounds(245, 250, 150, 50);		
+		    northPanel.setVisible(true);
+		    musicTitle.setBounds(0, -68, 405, 400);
+		    audio.volumeSlider.setBounds(245, 250, 150, 50);		
 		}
 		
 		
@@ -256,48 +253,44 @@ public class MusicFrame extends JFrame implements  ActionListener, ChangeListene
 		
 	
 	 private void updateImage(int index) {
-		ImageIcon titleImage = new ImageIcon(audio.data[index].image);
-		// Get the original image
-		Image originalImage = titleImage.getImage();
-		
-		 // Resize the image
-		int newWidth = 405;
-		int newHeight = 200;
-		Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-		
-		 // Create a new ImageIcon with the resized image
-		ImageIcon resizedImageIcon = new ImageIcon(resizedImage);
-		
-		// Set the new ImageIcon as the label's icon
-		musicTitle.setIcon(resizedImageIcon);
+	   ImageIcon titleImage = new ImageIcon(audio.data[index].image);
+	   // Get the original image
+	   Image originalImage = titleImage.getImage();
+
+	   // Resize the image
+	   int newWidth = 405;
+	   int newHeight = 200;
+	   Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+	   // Create a new ImageIcon with the resized image
+           ImageIcon resizedImageIcon = new ImageIcon(resizedImage);
+
+           // Set the new ImageIcon as the label's icon
+	   musicTitle.setIcon(resizedImageIcon);
 	}
 	
 	private void autoPlayNext()  { 
 	    // Create a LineListener to monitor the status of the clip
-		random = new Random();
-		audio.clip.addLineListener(event -> {
+	    random = new Random();
+	    audio.clip.addLineListener(event -> {
 			
 			// If the clip has stopped, start the next clip
               if (event.getType() == LineEvent.Type.STOP) {
             	    int randomIndex = random.nextInt(audio.data.length);  	                     	  
 	                System.out.println(randomIndex);        
 	                reUpdate(randomIndex);
-	            	try {
+					try {
 						audio.updateMusic(randomIndex);
 					} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
 						e.printStackTrace();
 					}
 					//run the entire autoPlayNext function again
-					autoPlayNext();
-					
-						
-
+					autoPlayNext();								
               }
           });
 		 // Start playing the first clip
 		 audio.clip.start();
 	}
-
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
@@ -329,15 +322,12 @@ public class MusicFrame extends JFrame implements  ActionListener, ChangeListene
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {	
 		audio.volumeSlider.setVisible(false);  //hide the volume 
-		
-	  
 	}
 }
 
